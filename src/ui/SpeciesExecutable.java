@@ -62,20 +62,54 @@ public class SpeciesExecutable {
 	}
 
 	public void registerSpecies() {
+		reader.nextLine();
 
 		System.out.println("Type the new Species' name: ");
-		String name = reader.next();
+		String name = reader.nextLine();
 
 		System.out.println("Type the new Species' scientific name: ");
-		String scientificName = reader.next();
+		String scientificName = reader.nextLine();
 
-		if (speciesController.registerSpecies(name, scientificName)) {
+		System.out.println("Type the Species' class: (1. Flora Herbario, 2. Fauna)");
+		int species_choice = reader.nextInt();
 
-			System.out.println("Species registered successfully");
+		if(species_choice == 1){
+			reader.nextLine();
+			// boolean flowers, boolean fruits, double maxHeight
+			System.out.println("If the Species has flowers, type (true), else type (false): ");
+			boolean flowers = reader.nextBoolean();
 
-		} else {
+			System.out.println("If the Species has fruits, type (true), else type (false): ");
+			boolean fruits = reader.nextBoolean();
 
-			System.out.println("Error, Species couldn't be registered");
+			System.out.println("Type the Species' maximum height (cm): ");
+			double maxHeight = reader.nextDouble();
+
+			if(speciesController.registerSpecies(name, scientificName, flowers, fruits, maxHeight)){
+				System.out.println("Species' been stored Successfully!");
+			}else{
+				System.out.println("Error. Your new Species couldn't be stored :(");
+			}
+
+		}else if(species_choice == 2){
+			reader.nextLine();
+
+			//boolean migratory, double maxWeight
+			System.out.println("If the Species is migratory, type (true), else type (false)");
+			boolean migratory = reader.nextBoolean();
+
+			System.out.println("Type the Species' maximum weight (kg)");
+			double maxWeight = reader.nextDouble();
+
+			if(speciesController.registerSpecies(name, scientificName, migratory, migratory, maxWeight)){
+				System.out.println("Species' been stored Succesfully!");
+			}else{
+				System.out.println("Error. The new Species couldn't be stored :(");
+			}
+
+		}else{
+			System.out.println("Type a VALID CLASS");
+			registerSpecies();
 		}
 
 	}
@@ -89,7 +123,47 @@ public class SpeciesExecutable {
 		if (!query.equals("")) {
 			System.out.println(query);
 
-			// ...
+			System.out.println("Type the number that corresponds to the Species you're looking for");
+			int numSpecies = reader.nextInt();
+
+			System.out.println("Type the new name of the Species: ");
+			String newName = reader.nextLine();
+
+			System.out.println("Type the new Scientific name of the Species: ");
+			String newScientificName = reader.nextLine();
+
+			if(speciesController.getInstanceOfSpecies(numSpecies)){
+				//boolean flowers, boolean fruits, double maxHeight
+				System.out.println("If the Species has flowers, type (true), else type (false):");
+				boolean flowers = reader.nextBoolean();
+
+				System.out.println("If the Species has fruits, type (true), else type (false): ");
+				boolean fruits = reader.nextBoolean();
+
+				System.out.println("Type the new Species' maximum height");
+				double newMaxHeight = reader.nextDouble();
+
+				if(speciesController.editSpecies(numSpecies, newName, newScientificName, fruits, newMaxHeight)){
+					System.out.println("Species' been updated Successfully!");
+				}else{
+					System.out.println("Species was not found");
+				}
+
+			}else{
+				//boolean migratory, double maxWeight
+
+				System.out.println("If the Species is migratory, type (true), else type (false)");
+				boolean newmigratory = reader.nextBoolean();
+
+				System.out.println("Type the Species' maximum weight (kg)");
+				double newmaxWeight = reader.nextDouble();
+
+				if(speciesController.editSpecies(numSpecies, newName, newScientificName, newmigratory, newmaxWeight)){
+					System.out.println("Species' been updated Successfully!");
+				}else{
+					System.out.println("Species was not found.");
+				}
+			}
 
 		} else {
 			System.out.println("There aren't any species registered yet");
