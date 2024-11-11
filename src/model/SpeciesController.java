@@ -42,7 +42,7 @@ public class SpeciesController {
 
 		for (int i = 0; (i < species.length); i++) {
 			if (species[i] != null) {
-				msg += "\n" + (i + 1) + ". " + species[i].getName();
+				msg += "\n" + (i) + ". " + species[i].getName();
 			}
 		}
 
@@ -81,6 +81,23 @@ public class SpeciesController {
 			return especieBuscada.editSpecies(name, sci_Name, migratory, maxWeight);
 		}
 		return false;
+	}
+
+	public boolean deleteSpecies(int specie){
+		Species sp = searchSpecies(specie);
+
+		for(int s=0; s<species.length;s++){
+			if(species[s].equals(sp)){
+				species[s] = null;
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public String showSpecies(int specie){
+		Species s = searchSpecies(specie);
+		return s.toString();
 	}
 
 }

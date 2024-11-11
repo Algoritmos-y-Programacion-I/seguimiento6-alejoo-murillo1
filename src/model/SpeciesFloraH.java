@@ -47,5 +47,9 @@ public class SpeciesFloraH extends Species {
         return true;
     }
 
+    @Override
+    public String toString(){
+        return "Nombre: "+getName()+", Nombre Científico: "+getScientificName()+", Flores? "+isFlowers()+", Frutas? "+isFruits()+", Altura máxima: "+getMaxHeight();
+    }
     
 }

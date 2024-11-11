@@ -35,5 +35,10 @@ public class SpeciesFauna extends Species {
         return true;
     }
 
+    @Override
+    public String toString(){
+        return "Nombre: "+getName()+", Nombre Cientifico: "+getScientificName()+", Migratoria? "+isMigratory()+", Peso Max."+getMaxWeight();
+    }
+
     
 }

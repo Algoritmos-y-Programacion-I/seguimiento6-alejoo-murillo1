@@ -1,7 +1,6 @@
 package ui;
 
 import java.util.Scanner;
-
 import model.SpeciesController;
 
 public class SpeciesExecutable {
@@ -126,6 +125,8 @@ public class SpeciesExecutable {
 			System.out.println("Type the number that corresponds to the Species you're looking for");
 			int numSpecies = reader.nextInt();
 
+			reader.nextLine();
+
 			System.out.println("Type the new name of the Species: ");
 			String newName = reader.nextLine();
 
@@ -143,7 +144,7 @@ public class SpeciesExecutable {
 				System.out.println("Type the new Species' maximum height");
 				double newMaxHeight = reader.nextDouble();
 
-				if(speciesController.editSpecies(numSpecies, newName, newScientificName, fruits, newMaxHeight)){
+				if(speciesController.editSpecies(numSpecies, newName, newScientificName,flowers, fruits, newMaxHeight)){
 					System.out.println("Species' been updated Successfully!");
 				}else{
 					System.out.println("Species was not found");
@@ -180,7 +181,12 @@ public class SpeciesExecutable {
 		if (!query.equals("")) {
 			System.out.println(query);
 
-			// ...
+			System.out.println("Species to delete: ");
+			int specie = reader.nextInt();
+
+			if(speciesController.deleteSpecies(specie)){
+				System.out.println("Species deleted Successfully.");
+			}
 
 		} else {
 			System.out.println("There aren't any species registered yet");
@@ -197,7 +203,10 @@ public class SpeciesExecutable {
 		if (!query.equals("")) {
 			System.out.println(query);
 
-			// ...
+			System.out.println("Species: ");
+			int specie = reader.nextInt();
+
+			System.out.println(speciesController.showSpecies(specie));
 
 		} else {
 			System.out.println("There aren't any species registered yet");
