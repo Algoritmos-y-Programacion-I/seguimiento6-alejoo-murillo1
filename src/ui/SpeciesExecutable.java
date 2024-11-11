@@ -31,6 +31,7 @@ public class SpeciesExecutable {
 			System.out.println("1. Register a Species");
 			System.out.println("2. Edit a Species");
 			System.out.println("3. Delete a Species");
+			System.out.println("4. Display a Species' info");
 			System.out.println("0. Exit");
 
 			int mainOption = reader.nextInt();
@@ -45,6 +46,9 @@ public class SpeciesExecutable {
 				break;
 			case 3:
 				deleteSpecies();
+				break;
+			case 4:
+				showSpecies();
 				break;
 			case 0:
 				System.out.println("Thanks for using our system");
